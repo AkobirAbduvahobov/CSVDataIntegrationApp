@@ -1,0 +1,6 @@
+@CSVDataIntegrationApp.Server_HostAddress = http://localhost:5165
+
+GET {{CSVDataIntegrationApp.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

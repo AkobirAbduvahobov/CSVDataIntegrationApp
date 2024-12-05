@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Server", "CSVDataIntegrationApp.Server\CSVDataIntegrationApp.Server.csproj", "{8A7E2958-53E4-4F68-8F17-5B8D94B64ACA}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "csvdataintegrationapp.client", "csvdataintegrationapp.client\csvdataintegrationapp.client.esproj", "{CBCC95F1-2368-40AF-97DA-953F3BBEC666}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Domain", "CSVDataIntegrationApp.Domain\CSVDataIntegrationApp.Domain.csproj", "{E8404207-A94A-4728-BACF-096BD77370A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Infrastructure", "CSVDataIntegrationApp.Infrastructure\CSVDataIntegrationApp.Infrastructure.csproj", "{8B6C5FCB-1881-40F6-AB71-247869CFB3F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Application", "CSVDataIntegrationApp.Application\CSVDataIntegrationApp.Application.csproj", "{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A7E2958-53E4-4F68-8F17-5B8D94B64ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7E2958-53E4-4F68-8F17-5B8D94B64ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7E2958-53E4-4F68-8F17-5B8D94B64ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7E2958-53E4-4F68-8F17-5B8D94B64ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCC95F1-2368-40AF-97DA-953F3BBEC666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCC95F1-2368-40AF-97DA-953F3BBEC666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCC95F1-2368-40AF-97DA-953F3BBEC666}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CBCC95F1-2368-40AF-97DA-953F3BBEC666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCC95F1-2368-40AF-97DA-953F3BBEC666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCC95F1-2368-40AF-97DA-953F3BBEC666}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E8404207-A94A-4728-BACF-096BD77370A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8404207-A94A-4728-BACF-096BD77370A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8404207-A94A-4728-BACF-096BD77370A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8404207-A94A-4728-BACF-096BD77370A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6C5FCB-1881-40F6-AB71-247869CFB3F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6C5FCB-1881-40F6-AB71-247869CFB3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6C5FCB-1881-40F6-AB71-247869CFB3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6C5FCB-1881-40F6-AB71-247869CFB3F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
