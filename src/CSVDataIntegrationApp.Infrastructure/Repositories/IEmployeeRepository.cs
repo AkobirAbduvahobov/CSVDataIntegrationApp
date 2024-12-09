@@ -4,6 +4,15 @@ namespace CSVDataIntegrationApp.Infrastructure.Repositories;
 
 public interface IEmployeeRepository
 {
-    Task<int> AddEmployeesAsync(IEnumerable<Employee> employees);
-    Task<IEnumerable<Employee>> GetEmployeesAsync();
+    Task<int> InsertEmployeesAsync(IEnumerable<Employee> employees);
+
+    Task<Guid> InsertEmployeeAsync(Employee employee);
+
+    IQueryable<Employee> SelectEmployeesAsync();
+
+    Task UpdateEmployeeAsync(Employee employee);
+
+    Task RemoveEmployeesAsync(Guid id);
+
+    Task<Employee> SelectEmployeeByIdAsync(Guid employeeId);
 }

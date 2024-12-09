@@ -1,0 +1,109 @@
+
+
+<div>
+  <div class="upload-container">
+
+    <input
+      type="file"
+      id="csvFileInput"
+      accept=".csv"
+      (change)="onFileSelected($event)"
+      class="file-input"
+    />
+  
+    <button
+      [disabled]="!selectedFile"
+      (click)="uploadFile()"
+      class="upload-button"
+    >
+      Upload CSV
+    </button>
+  </div>
+
+</div>
+
+
+<kendo-grid 
+  [sortable]="true"
+  [data]="employees"
+  [height]="500">
+  <ng-template kendoGridToolbarTemplate>
+    <button kendoButton (click)="openModal()">Add new</button>
+  </ng-template>
+  <kendo-grid-column field="surname" title="Surname"></kendo-grid-column>
+  <kendo-grid-column field="forenames" title="Forenames"></kendo-grid-column>
+  <kendo-grid-column field="payrollNumber" title="PayrollNumber"></kendo-grid-column>
+  <kendo-grid-column field="dateOfBirth" format="dd/MM/yyyy" title="Birth date"></kendo-grid-column>
+  <kendo-grid-column field="telephone" title="Telephone"></kendo-grid-column>
+  <kendo-grid-column field="mobile" title="Mobile"></kendo-grid-column>
+  <kendo-grid-column field="address" title="Address"></kendo-grid-column>
+  <kendo-grid-column field="postcode" title="Postcode"></kendo-grid-column>
+  <kendo-grid-column field="emailHome" title="EmailHome"></kendo-grid-column>
+  <kendo-grid-column field="startDate" format="dd/MM/yyyy" title="Start date"></kendo-grid-column>
+  <kendo-grid-column title="Actions" [width]="145">
+    <ng-template kendoGridCellTemplate let-employee>
+      <div style="display: flex; gap: 8px;">
+        <button kendoButton (click)="openModal(employee)">Edit</button>
+        <button kendoButton (click)="deleteEmployee(employee)">Delete</button>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
+
+<kendo-dialog *ngIf="isModalOpen" [title]="modalTitle" (close)="closeModal()">
+  <div style="max-height: 400px; overflow-y: auto; padding-right: 8px;">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="payrollNumber">PayrollNumber</label>
+        <input kendoTextBox id="payrollNumber" [(ngModel)]="currentEmployee.payrollNumber" name="payrollNumber" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="forenames">Forenames</label>
+        <input kendoTextBox id="forenames" [(ngModel)]="currentEmployee.forenames" name="forenames" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="surname">Surname</label>
+        <input kendoTextBox id="surname" [(ngModel)]="currentEmployee.surname" name="surname" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="dateOfBirth">Date of Birth</label>
+        <kendo-datepicker [(value)]="currentEmployee.dateOfBirth" name="dateOfBirth"></kendo-datepicker>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="telephone">Telephone</label>
+        <input kendoTextBox id="telephone" [(ngModel)]="currentEmployee.telephone" name="telephone" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="mobile">Mobile</label>
+        <input kendoTextBox id="mobile" [(ngModel)]="currentEmployee.mobile" name="mobile" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="address">Address</label>
+        <input kendoTextBox id="address" [(ngModel)]="currentEmployee.address" name="address" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="address2">Address2</label>
+        <input kendoTextBox id="address2" [(ngModel)]="currentEmployee.address2" name="address2" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="postcode">Postcode</label>
+        <input kendoTextBox id="postcode" [(ngModel)]="currentEmployee.postcode" name="postcode" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="emailHome">EmailHome</label>
+        <input kendoTextBox id="emailHome" [(ngModel)]="currentEmployee.emailHome" name="emailHome" required/>
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="startDate">Start date</label>
+        <kendo-datepicker [(value)]="currentEmployee.startDate" name="startDate"></kendo-datepicker>
+      </div>
+      <!-- Add more fields as needed -->
+      <div class="form-actions" style="margin-bottom: 16px;">
+        <div style="display: flex; gap: 8px;">
+          <button kendoButton themeColor="primary"  type="submit"> Save </button>
+          <button kendoButton (click)="closeModal()" themeColor="secondary"> Cancel </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</kendo-dialog>

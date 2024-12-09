@@ -1,0 +1,72 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px 16px;
+    text-align: left;
+  }
+  
+  mat-header-row, mat-row {
+    display: table-row;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .upload-container {
+    text-align: center;
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 420px; /* Reduced width */
+    max-height: 80;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  h2 {
+    margin-bottom: 15px; /* Reduced space around heading */
+  }
+  
+  .file-input {
+    margin-bottom: 10px; /* Reduced space for file input */
+    padding: 5px;
+  }
+  
+  .upload-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px; /* Reduced padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px; /* Smaller font size */
+  }
+  
+  .upload-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .status-message {
+    margin-top: 15px;
+    font-size: 14px; /* Smaller font size */
+    color: green;
+  }
+  
+/* Customizing the appearance of success and error toasts */
+.toast-success {
+  background-color: #4caf50 !important; /* Green for success */
+}
+
+.toast-error {
+  background-color: #f44336 !important; /* Red for error */
+}
+
+.toast-top-right {
+  top: 50px; /* Adjust the distance from the top */
+  right: 30px; /* Adjust the distance from the right */
+}

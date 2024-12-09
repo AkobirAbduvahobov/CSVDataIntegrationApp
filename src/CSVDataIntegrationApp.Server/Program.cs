@@ -1,7 +1,9 @@
 
 using CSVDataIntegrationApp.Application.Services;
+using CSVDataIntegrationApp.Application.Validators;
 using CSVDataIntegrationApp.Domain;
 using CSVDataIntegrationApp.Infrastructure.Repositories;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSVDataIntegrationApp.Server
@@ -27,10 +29,23 @@ namespace CSVDataIntegrationApp.Server
             builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateEmployeeDtoValidator>();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost", builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseCors("AllowLocalhost"); // Apply CORS policy
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
