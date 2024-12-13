@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Core", "CSVDataIntegrationApp.Core\CSVDataIntegrationApp.Core.csproj", "{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Application.Tests", "CSVDataIntegrationApp.Application.Tests\CSVDataIntegrationApp.Application.Tests.csproj", "{251A8159-C5DB-41AA-B368-5E3D4A289D86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Infrastructure.Tests", "CSVDataIntegrationApp.Infrastructure.Tests\CSVDataIntegrationApp.Infrastructure.Tests.csproj", "{EE0C7A0B-86E4-46D2-8DA9-ECC86FCF704A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,14 @@ Global
 		{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{251A8159-C5DB-41AA-B368-5E3D4A289D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{251A8159-C5DB-41AA-B368-5E3D4A289D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{251A8159-C5DB-41AA-B368-5E3D4A289D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{251A8159-C5DB-41AA-B368-5E3D4A289D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0C7A0B-86E4-46D2-8DA9-ECC86FCF704A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0C7A0B-86E4-46D2-8DA9-ECC86FCF704A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0C7A0B-86E4-46D2-8DA9-ECC86FCF704A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0C7A0B-86E4-46D2-8DA9-ECC86FCF704A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

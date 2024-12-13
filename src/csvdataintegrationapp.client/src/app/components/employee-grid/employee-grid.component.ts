@@ -74,7 +74,6 @@ export class EmployeeGridComponent implements OnInit {
   }
 
   public loadEmployees(): void {
-    debugger;
     this.employeeService.getAllEmployees(this.searchTerm, this.sortColumn, this.sortAscending).subscribe({
       next: (dataEmployees) => {
         debugger;
@@ -120,7 +119,6 @@ export class EmployeeGridComponent implements OnInit {
   }
 
   public deleteEmployee(employee: EmployeeModel): void {
-    console.log(employee);
     this.employeeService.deleteEmployee(employee.id!).subscribe({
       next: (response) => {
         this.toastr.success('Employee deleted successfully!');
