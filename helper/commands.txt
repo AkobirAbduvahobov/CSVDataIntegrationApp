@@ -1,1 +1,0 @@
-ng-openapi-gen -i "D:\Projects\DotNetProjects\CSVDataIntegrationApp\helper\apiJson.json" -o D:\Projects\DotNetProjects\CSVDataIntegrationApp\temp\api --exclude-tags=Test
