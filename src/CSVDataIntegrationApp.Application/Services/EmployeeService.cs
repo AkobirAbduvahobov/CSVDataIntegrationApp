@@ -1,5 +1,6 @@
 ﻿using CSVDataIntegrationApp.Application.DTOs;
 using CSVDataIntegrationApp.Application.Models;
+using CSVDataIntegrationApp.Core.Errors;
 using CSVDataIntegrationApp.Domain.Entites;
 using CSVDataIntegrationApp.Infrastructure.Repositories;
 using FluentValidation;
@@ -32,6 +33,7 @@ public class EmployeeService : IEmployeeService
 
     public async Task UpdateEmployeeAsync(EmployeeDto employeeDto)
     {
+        ValidateEmployeeDto(employeeDto);
         var employee = ConvertToEntity(employeeDto);
         await _employeeRepository.UpdateEmployeeAsync(employee);
     }
@@ -123,12 +125,13 @@ public class EmployeeService : IEmployeeService
             throw new ArgumentNullException(nameof(employeesQuery));
         }
 
-        if (string.IsNullOrWhiteSpace(employeeQueryModel.Search) is false)
+        if (!string.IsNullOrWhiteSpace(employeeQueryModel.Search))
         {
+            string searchQuery = $"%{employeeQueryModel.Search}%";
             employeesQuery = employeesQuery.Where(e =>
-                e.Surname.Contains(employeeQueryModel.Search) ||
-                e.Forenames.Contains(employeeQueryModel.Search) ||
-                e.EmailHome.Contains(employeeQueryModel.Search));
+                EF.Functions.Like(e.Surname, searchQuery) ||
+                EF.Functions.Like(e.Forenames, searchQuery) ||
+                EF.Functions.Like(e.EmailHome, searchQuery));
         }
 
         employeesQuery = employeeQueryModel.SortColumn switch
@@ -212,7 +215,7 @@ public class EmployeeService : IEmployeeService
         if (validationResult.IsValid is false)
         {
             var errors = validationResult.Errors.Select(e => e.ErrorMessage);
-            throw new ValidationException(string.Join(", ", errors));
+            throw new InvalidInputException(string.Join(", ", errors));
         }
     }
 
@@ -223,9 +226,7 @@ public class EmployeeService : IEmployeeService
         if (validationResult.IsValid is false)
         {
             var errors = validationResult.Errors.Select(e => e.ErrorMessage);
-            throw new ValidationException(string.Join(", ", errors));
+            throw new InvalidInputException(string.Join(", ", errors));
         }
     }
-
-   
 }

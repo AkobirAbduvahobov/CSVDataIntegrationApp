@@ -1,4 +1,5 @@
-﻿using CSVDataIntegrationApp.Domain;
+﻿using CSVDataIntegrationApp.Core.Errors;
+using CSVDataIntegrationApp.Domain;
 using CSVDataIntegrationApp.Domain.Entites;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +28,7 @@ public class EmployeeRepository : IEmployeeRepository
 
     public async Task<Guid> InsertEmployeeAsync(Employee employee)
     {
-        await _mainContext.AddAsync(employee);
+        await _mainContext.Employees.AddAsync(employee);
         await _mainContext.SaveChangesAsync();
         return employee.Id;
     }
@@ -50,7 +51,7 @@ public class EmployeeRepository : IEmployeeRepository
         var employee = await _mainContext.Employees.FirstOrDefaultAsync(x => x.Id == employeeId);
         if (employee == null)
         {
-            throw new NullReferenceException("Entity not found from DB");
+            throw new NotFoundException("Entity not found from DB");
         }
 
         return employee;

@@ -22,9 +22,21 @@
 
 </div>
 
+<div class="search-container" style="margin: 20px 0;">
+  <input type="text" 
+         placeholder="Search: surname, forenames, emailHome ..." 
+         class="form-control" 
+         style="min-width: 300px;" 
+         (input)="onSearchChange($event)" />
+</div>
+
+
+
 
 <kendo-grid 
   [sortable]="true"
+  (sortChange)="onSortChange($event)"
+  [sort]="sort"
   [data]="employees"
   [height]="500">
   <ng-template kendoGridToolbarTemplate>

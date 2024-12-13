@@ -3,6 +3,8 @@ import { EmployeeLocalService } from '../../services/employee-local.service';
 import { EmployeeModel } from '../../services/models/employee';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { debounceTime, Subject } from 'rxjs';
+import { SortDescriptor } from '@progress/kendo-data-query';
 
 @Component({
   selector: 'app-employee-grid',
@@ -11,13 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class EmployeeGridComponent implements OnInit {
-  
-  constructor(private employeeService: EmployeeLocalService, private formBuilder: FormBuilder, private toastr: ToastrService) {}
-
-  ngOnInit(): void {
-    this.loadEmployees();
+    constructor(private employeeService: EmployeeLocalService, private formBuilder: FormBuilder, private toastr: ToastrService) {
+    this.searchSubject.pipe(debounceTime(500)).subscribe((searchTerm) => {
+      this.loadEmployees();
+    });
   }
-
 
   public employees: EmployeeModel[] = [];
   public currentEmployee: EmployeeModel = this.getEmptyEmployee();
@@ -25,11 +25,57 @@ export class EmployeeGridComponent implements OnInit {
   public modalTitle = 'Add Employee';
   public selectedFile: File | null = null;
   public uploadStatus: string | null = null;
+  public sortColumn = 'surname';
+  public sortAscending = true;
+  public searchTerm: string = '';
+  private searchSubject: Subject<string> = new Subject<string>();
+  public sort: SortDescriptor[] = [];
 
+  ngOnInit(): void {
+    this.loadEmployees();
+  }
 
-  public loadEmployees(search?: string, sortColumn: string = 'surname', sortAscending: boolean = true): void {
+  public onSortChange(sort: SortDescriptor[]): void {
+    this.sort = sort;
+    this.employees = this.sortData(this.employees, sort);
+  }
+
+  public sortData(data: EmployeeModel[], sort: SortDescriptor[]): EmployeeModel[] {
+    if (!sort || sort.length === 0) {
+      return data;
+    }
+
+    return [...data].sort((a, b) => {
+      for (const descriptor of sort) {
+        const field = descriptor.field!;
+        const dir = descriptor.dir === 'asc' ? 1 : -1;
+        const aValue = this.getFieldValue(a, field);
+        const bValue = this.getFieldValue(b, field);
+
+        if (aValue == null && bValue != null) return -1 * dir;
+        if (aValue != null && bValue == null) return 1 * dir;
+        if (aValue == null && bValue == null) continue;
+
+        if (typeof aValue === 'string' && typeof bValue === 'string') {
+          const result = aValue.localeCompare(bValue) * dir;
+          if (result !== 0) return result;
+        } else if (aValue > bValue) {
+          return 1 * dir;
+        } else if (aValue < bValue) {
+          return -1 * dir;
+        }
+      }
+      return 0;
+    });
+  }
+
+  public getFieldValue(obj: any, field: string): any {
+    return field.split('.').reduce((o, i) => (o ? o[i] : null), obj);
+  }
+
+  public loadEmployees(): void {
     debugger;
-    this.employeeService.getAllEmployees(search, sortColumn, sortAscending).subscribe({
+    this.employeeService.getAllEmployees(this.searchTerm, this.sortColumn, this.sortAscending).subscribe({
       next: (dataEmployees) => {
         debugger;
         this.employees = dataEmployees
@@ -40,8 +86,17 @@ export class EmployeeGridComponent implements OnInit {
     });
   }
 
+  public onSearchChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.searchTerm = target.value;
+    this.searchSubject.next(this.searchTerm);
+  }
 
-  onFileSelected(event: Event): void {
+  public executeSearch() : void {
+    this.loadEmployees();
+  }
+
+  public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
       this.selectedFile = input.files[0];
@@ -49,7 +104,7 @@ export class EmployeeGridComponent implements OnInit {
     }
   }
 
-  uploadFile(): void {
+  public uploadFile(): void {
     if (this.selectedFile) {
       this.employeeService.uploadCsv(this.selectedFile).subscribe({
         next: (response) => {
@@ -58,12 +113,11 @@ export class EmployeeGridComponent implements OnInit {
           this.loadEmployees();
         },
         error: (err) => {
-          
+          this.toastr.error(`Error :  ${err.text}`);
         }
       });
     }
   }
-
 
   public deleteEmployee(employee: EmployeeModel): void {
     console.log(employee);
@@ -74,10 +128,10 @@ export class EmployeeGridComponent implements OnInit {
       },
       error: (err) => {
         this.loadEmployees();
+        this.toastr.error(`Error :  ${err.text}`);
       }
     });
   }
-
 
   public openModal(employee?: EmployeeModel): void {
     this.isModalOpen = true;
@@ -91,7 +145,6 @@ export class EmployeeGridComponent implements OnInit {
     this.currentEmployee = this.getEmptyEmployee();
   }
 
-
   public onSubmit(): void {
     if (this.currentEmployee.id) {
       this.employeeService.updateEmployee(this.currentEmployee).subscribe({
@@ -100,7 +153,11 @@ export class EmployeeGridComponent implements OnInit {
           this.loadEmployees();
           this.closeModal();
         },
-        error: (err) => console.error('Error updating employee', err),
+        error: (err) => {
+          this.loadEmployees();
+          this.toastr.error(`Error while updating`);
+          this.closeModal();
+        }
       });
     } else {
       this.employeeService.addEmployee(this.currentEmployee).subscribe({
@@ -109,11 +166,14 @@ export class EmployeeGridComponent implements OnInit {
           this.loadEmployees();
           this.closeModal();
         },
-        error: (err) => console.error('Error adding employee', err),
+        error: (err) => {
+          this.loadEmployees();
+          this.toastr.error(`Error while adding`);
+          this.closeModal();
+        }
       });
     }
   }
-
 
   private getEmptyEmployee(): EmployeeModel {
     return {
@@ -131,6 +191,4 @@ export class EmployeeGridComponent implements OnInit {
       telephone: null,
     };
   }
-
-
 }

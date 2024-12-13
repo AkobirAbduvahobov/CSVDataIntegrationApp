@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Application", "CSVDataIntegrationApp.Application\CSVDataIntegrationApp.Application.csproj", "{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVDataIntegrationApp.Core", "CSVDataIntegrationApp.Core\CSVDataIntegrationApp.Core.csproj", "{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DCAFD6A-DE49-4BE4-A4C9-71D81203DDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF4B6D01-01EB-4CDF-88B9-58E2224753A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
