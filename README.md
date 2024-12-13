@@ -11,12 +11,19 @@ This project is a CSV data integration application built with ASP.NET Core Web A
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Testing](#testing)
-- [Video Demonstration](#video-demonstration)
 - [License](#license)
+
+## Video Demonstration
+
+For a quick demonstration of how the application works, check out the video below:
+
+[Video Demonstration on YouTube](https://youtu.be/nFANIUUXJ40)
+
 
 ## Description
 
 CSVDataIntegrationApp is designed to manage and process employee data from CSV files. It features a backend powered by ASP.NET Core Web API and a frontend built using Angular. The application is structured with an N-Tier architecture, including layers for the Application, Infrastructure, Client, Core, Server, and Domain. 
+
 
 ## Features
 
@@ -59,8 +66,4 @@ To run this project locally, you will need:
    git clone https://github.com/yourusername/CSVDataIntegrationApp.git
    cd CSVDataIntegrationApp
 
-## Video Demonstration
 
-For a quick demonstration of how the application works, check out the video below:
-
-[Video Demonstration on YouTube](https://youtu.be/nFANIUUXJ40)
