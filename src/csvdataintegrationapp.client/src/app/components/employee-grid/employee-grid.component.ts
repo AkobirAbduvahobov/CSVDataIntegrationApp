@@ -99,7 +99,7 @@ export class EmployeeGridComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
       this.selectedFile = input.files[0];
-      this.uploadStatus = null; // Clear any previous status
+      this.uploadStatus = null; 
     }
   }
 
